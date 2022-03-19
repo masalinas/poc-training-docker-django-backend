@@ -35,3 +35,8 @@ Apply migrations
 ```sh
 python3 manage.py migrate ApiApplication
 ```
+
+Start django service
+```sh
+python3 manage.py runserver 8081
+```
