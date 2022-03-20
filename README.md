@@ -9,11 +9,9 @@ django-admin startproject poc_training_docker_django_backend
 
 ## Install some dependencies
 
-Mongo dependency
+Install dependencies
 ```sh
-pip install djangorestframework
-pip install djongo
-pip install django-cors-headers
+pip install -r requirements.txt
 ```
 
 Check the server on port 8001
@@ -48,5 +46,5 @@ docker build -t poc-training-docker-django-backend .
 
 ## run image
 ```sh
-docker run -d --name poc-training-docker-django-backend -p 8081:8081 poc-training-docker-django-backend
+docker run -d --name poc-training-docker-django-backend --network training -p 8081:8081 poc-training-docker-django-backend
 ```
