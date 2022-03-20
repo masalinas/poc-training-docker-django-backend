@@ -91,7 +91,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'trainingdb',
-        'HOST': 'localhost',
+        'HOST': 'trainingdb',
         'PORT': 27017,
     }
 }

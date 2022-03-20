@@ -19,7 +19,6 @@ def product_list(request):
 
         product_serializer = ProductSerializer(products, many=True)
         return JsonResponse(product_serializer.data, safe=False)
-        # 'safe=False' for objects serialization
 
     elif request.method == 'POST':
         product_data = JSONParser().parse(request)

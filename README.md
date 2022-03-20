@@ -40,3 +40,13 @@ Start django service
 ```sh
 python3 manage.py runserver 8081
 ```
+
+## Build docker image
+```sh
+docker build -t poc-training-docker-django-backend .
+```
+
+## run image
+```sh
+docker run -d --name poc-training-docker-django-backend -p 8081:8081 poc-training-docker-django-backend
+```
