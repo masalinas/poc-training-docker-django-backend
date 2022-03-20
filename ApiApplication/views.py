@@ -3,6 +3,7 @@ from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 from rest_framework.decorators import api_view
+from bson import ObjectId
 
 from ApiApplication.models import Product
 from ApiApplication.serializers import ProductSerializer
@@ -36,7 +37,8 @@ def product_list(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def product_detail(request, pk):
     try:
-        product = Product.objects.get(pk=pk)
+        #product = Product.objects.get(pk=pk)
+        product = Product.objects.get(pk=ObjectId(pk))
     except Product.DoesNotExist:
         return JsonResponse({'message': 'The product does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -55,12 +57,3 @@ def product_detail(request, pk):
     elif request.method == 'DELETE':
         product.delete()
         return JsonResponse({'message': 'Product was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
-
-
-@api_view(['GET'])
-def product_list_published(request):
-    products = Product.objects.filter(published=True)
-
-    if request.method == 'GET':
-        product_serializer = ProductSerializer(products, many=True)
-        return JsonResponse(product_serializer.data, safe=False)
